@@ -1,0 +1,35 @@
+# =========================
+# ANGULAR / NODE.JS
+# =========================
+node_modules/
+dist/
+.angular/
+npm-debug.log
+
+# =========================
+# C# / .NET CORE
+# =========================
+bin/
+obj/
+.vs/
+*.user
+appsettings.Development.json
+
+# =========================
+# PYTHON / RAG AI
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# FAISS Vector Database Files
+*.index
+
+# =========================
+# OS / GENERAL
+# =========================
+.DS_Store
+Thumbs.db

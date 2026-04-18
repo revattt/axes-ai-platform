@@ -1,0 +1,254 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Revat\\source\\repos\\Axes\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\knowledge-base\\knowledge-base.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\knowledge-base\\knowledge-base.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\layout\\layout.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\layout\\layout.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\knowledge-base\\knowledge-base.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\knowledge-base\\knowledge-base.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\project.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\project.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\dashboard\\dashboard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\dashboard\\dashboard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\dashboard\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\dashboard\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\ingest\\ingest.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\ingest\\ingest.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\login\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\login\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\dtos\\projectresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:dtos\\projectresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\ingest\\ingest.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\ingest\\ingest.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\analytics\\analytics.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\analytics\\analytics.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|c:\\users\\revat\\source\\repos\\axes\\axes-ui\\src\\app\\auth.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{8D459B6D-EEF8-209E-C1E7-9664EB154C39}|Axes.csproj|solutionrelative:axes-ui\\src\\app\\auth.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "knowledge-base.html",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\knowledge-base\\knowledge-base.html",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\knowledge-base\\knowledge-base.html",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\knowledge-base\\knowledge-base.html",
+              "RelativeToolTip": "axes-ui\\src\\app\\knowledge-base\\knowledge-base.html",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAwFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-18T09:10:00.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "knowledge-base.ts",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\knowledge-base\\knowledge-base.ts",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\knowledge-base\\knowledge-base.ts",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\knowledge-base\\knowledge-base.ts",
+              "RelativeToolTip": "axes-ui\\src\\app\\knowledge-base\\knowledge-base.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-18T09:08:37.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "dashboard.html",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\dashboard\\dashboard.html",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\dashboard\\dashboard.html",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\dashboard\\dashboard.html",
+              "RelativeToolTip": "axes-ui\\src\\app\\dashboard\\dashboard.html",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAAwNcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-17T18:50:24.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "dashboard.ts",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\dashboard\\dashboard.ts",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\dashboard\\dashboard.ts",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\dashboard\\dashboard.ts",
+              "RelativeToolTip": "axes-ui\\src\\app\\dashboard\\dashboard.ts",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAiwKcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-10T17:28:35.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ingest.ts",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\ingest\\ingest.ts",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\ingest\\ingest.ts",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\ingest\\ingest.ts",
+              "RelativeToolTip": "axes-ui\\src\\app\\ingest\\ingest.ts",
+              "ViewState": "AgIAACMAAAAAAAAAAAAiwDsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-17T13:20:00.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "analytics.ts",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\analytics\\analytics.ts",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\analytics\\analytics.ts",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\analytics\\analytics.ts",
+              "RelativeToolTip": "axes-ui\\src\\app\\analytics\\analytics.ts",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAiwDcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-17T06:22:29.477Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "login.html",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\login\\login.html",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\login\\login.html",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\login\\login.html",
+              "RelativeToolTip": "axes-ui\\src\\app\\login\\login.html",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-10T17:13:38.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "auth.ts",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\auth.ts",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\auth.ts",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\auth.ts",
+              "RelativeToolTip": "axes-ui\\src\\app\\auth.ts",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-10T17:09:57.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "project.ts",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\project.ts",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\project.ts",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\project.ts",
+              "RelativeToolTip": "axes-ui\\src\\app\\project.ts",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-10T17:28:00.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "app.routes.ts",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\app.routes.ts",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\app.routes.ts",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\app.routes.ts",
+              "RelativeToolTip": "axes-ui\\src\\app\\app.routes.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-10T17:06:00.143Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "layout.html",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\layout\\layout.html",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\layout\\layout.html",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\layout\\layout.html",
+              "RelativeToolTip": "axes-ui\\src\\app\\layout\\layout.html",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-17T17:36:09.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ingest.html",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\ingest\\ingest.html",
+              "RelativeDocumentMoniker": "axes-ui\\src\\app\\ingest\\ingest.html",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\axes-ui\\src\\app\\ingest\\ingest.html",
+              "RelativeToolTip": "axes-ui\\src\\app\\ingest\\ingest.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-17T13:20:22.923Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProjectController.cs",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\Controllers\\ProjectController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectController.cs",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\Controllers\\ProjectController.cs",
+              "RelativeToolTip": "Controllers\\ProjectController.cs",
+              "ViewState": "AgIAANcAAAAAAAAAAAAqwOwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T06:47:44.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProjectResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\Revat\\source\\repos\\Axes\\Dtos\\ProjectResponseDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\ProjectResponseDto.cs",
+              "ToolTip": "C:\\Users\\Revat\\source\\repos\\Axes\\Dtos\\ProjectResponseDto.cs",
+              "RelativeToolTip": "Dtos\\ProjectResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T17:18:08.915Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
