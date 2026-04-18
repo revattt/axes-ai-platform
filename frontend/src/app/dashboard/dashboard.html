@@ -1,0 +1,237 @@
+﻿<div class="mx-auto h-full max-w-full p-8">
+
+  <header class="mb-8 flex items-end justify-between border-b border-slate-200 pb-4 dark:border-slate-800">
+    <div>
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Document Vault</h2>
+      <p class="mt-1 text-sm text-slate-500">Review, filter, and export AI-extracted payloads.</p>
+    </div>
+    <div class="flex space-x-3">
+      <span class="flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-500 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-500"></span> Uplink Secure
+      </span>
+    </div>
+  </header>
+
+  <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+    <table class="w-full text-left text-sm text-slate-600 dark:text-slate-400">
+      <thead class="border-b border-slate-200 bg-slate-50 text-slate-500 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-400">
+        <tr>
+          <th scope="col" class="px-6 py-4 font-medium">Project</th>
+          <th scope="col" class="px-6 py-4 font-medium">Routing</th>
+          <th scope="col" class="px-6 py-4 font-medium">Status</th>
+          <th scope="col" class="px-6 py-4 text-right font-medium">Confidence</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+        <tr *ngFor="let project of projects" (click)="openDetails(project)" class="group cursor-pointer transition-colors hover:bg-slate-50 dark:hover:bg-slate-700/50">
+          <td class="px-6 py-4">
+            <div class="font-medium text-slate-900 transition-colors group-hover:text-blue-600 dark:text-slate-100 dark:group-hover:text-blue-400">{{ project.projectTitle }}</div>
+            <div class="mt-0.5 max-w-xs truncate text-xs text-slate-500">{{ project.originalFileName }}</div>
+          </td>
+          <td class="px-6 py-4">
+            <div class="flex space-x-2">
+              <span class="inline-flex items-center rounded border px-2 py-0.5 font-bold uppercase tracking-wider text-[10px]"
+                    [ngClass]="{'bg-red-50 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800': project.priority === 'Critical',
+                                'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700': project.priority !== 'Critical'}">
+                {{ project.priority || 'Normal' }}
+              </span>
+              <span class="inline-flex items-center rounded border border-blue-200 bg-blue-50 px-2 py-0.5 font-bold uppercase tracking-wider text-blue-700 text-[10px] dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                {{ project.department || 'Sales' }}
+              </span>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium"
+                  [ngClass]="{
+                    'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800': project.status === 'Completed',
+                    'bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800': project.status === 'Processing',
+                    'bg-red-50 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800': project.status === 'Failed'
+                  }">
+              {{ project.status }}
+            </span>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <span class="font-medium text-slate-900 dark:text-slate-300">{{ project.aiConfidenceScore || 0 }}%</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="selectedProjectDetails" class="fixed inset-0 z-50 flex justify-end font-sans">
+
+  <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" (click)="closeDetails()"></div>
+
+  <div class="animate-fade-in-right relative flex h-full w-full max-w-lg flex-col bg-white shadow-2xl dark:bg-slate-800">
+
+    <div class="flex items-start justify-between border-b border-slate-200 bg-slate-50 px-6 py-5 dark:border-slate-700 dark:bg-slate-800/80">
+      <div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ selectedProjectDetails.projectTitle }}</h3>
+        <p class="mt-1 text-xs text-slate-500">{{ selectedProjectDetails.originalFileName }}</p>
+      </div>
+      <button (click)="closeDetails()" class="rounded-md p-1 text-slate-400 transition-colors hover:text-slate-600">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+
+    <div class="flex-1 space-y-6 overflow-y-auto p-6">
+
+      <div>
+        <div class="mb-2 flex justify-between text-sm">
+          <span class="font-medium text-slate-700 dark:text-slate-300">Extraction Confidence</span>
+          <span class="font-bold text-slate-900 dark:text-white">{{ selectedProjectDetails.aiConfidenceScore || 0 }}%</span>
+        </div>
+        <div class="h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
+          <div class="h-full rounded-full transition-all duration-500"
+               [ngClass]="{
+               'bg-green-500' : selectedProjectDetails.aiConfidenceScore === 100,
+               'bg-yellow-500' : selectedProjectDetails.aiConfidenceScore < 100 && selectedProjectDetails.aiConfidenceScore >= 70,
+               'bg-red-500': selectedProjectDetails.aiConfidenceScore < 70
+               }"
+               [style.width]="selectedProjectDetails.aiConfidenceScore + '%'"></div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedProjectDetails?.parsedJson" class="mt-6 space-y-6">
+
+        <div *ngIf="selectedProjectDetails.parsedJson.ai_confidence_score < 100 && selectedProjectDetails.parsedJson.risk_assessment?.length > 0"
+             class="p-4 bg-slate-800/80 border border-slate-700 rounded-lg shadow-sm">
+          <h3 class="mb-3 flex items-center text-sm font-bold text-slate-100">
+            <svg class="mr-2 h-4 w-4 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            Active AI Risks
+          </h3>
+
+          <ul class="space-y-2">
+            <li *ngFor="let risk of selectedProjectDetails.parsedJson.risk_assessment" class="flex items-start text-xs">
+              <span class="mr-2 mt-0.5 inline-flex shrink-0 items-center rounded px-1.5 py-0.5 font-bold uppercase tracking-wider"
+                    [ngClass]="{
+                       'bg-red-900/80 text-red-300 border border-red-700': risk.severity === 'High',
+                       'bg-yellow-900/80 text-yellow-300 border border-yellow-700': risk.severity === 'Medium'
+                     }">
+                {{ risk.severity }}
+              </span>
+              <span class="leading-tight text-slate-300">{{ risk.issue }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-5">
+
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-900/50">
+            <h4 class="mb-3 border-b border-slate-200 pb-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:border-slate-700 dark:text-slate-400">Financial Requirements</h4>
+
+            <div>
+              <label class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-400">Estimated Budget</label>
+              <div [ngClass]="{'border-red-300 bg-red-50 text-red-900 dark:border-red-500/50 dark:bg-red-900/20 dark:text-red-200': hasRisk('budget'), 'border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200': !hasRisk('budget')}"
+                   class="w-full rounded-md border p-3 text-sm shadow-sm transition-colors">
+                {{ selectedProjectDetails.parsedJson.budget_mentioned }}
+              </div>
+
+              <p *ngIf="hasRisk('budget')" class="mt-2 flex items-center text-xs font-medium text-red-500 dark:text-red-400">
+                ⚠ {{ getRiskMessage('budget') }}
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-900/50">
+            <h4 class="mb-3 border-b border-slate-200 pb-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:border-slate-700 dark:text-slate-400">Timeline & Milestones</h4>
+
+            <div>
+              <label class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-400">Submission Deadline</label>
+              <div [ngClass]="{'border-red-300 bg-red-50 text-red-900 dark:border-red-500/50 dark:bg-red-900/20 dark:text-red-200': hasRisk('deadline'), 'border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200': !hasRisk('deadline')}"
+                   class="w-full rounded-md border p-3 text-sm shadow-sm transition-colors">
+                {{ selectedProjectDetails.parsedJson.submission_deadline }}
+              </div>
+
+              <p *ngIf="hasRisk('deadline')" class="mt-2 flex items-center text-xs font-medium text-red-500 dark:text-red-400">
+                ⚠ {{ getRiskMessage('deadline') }}
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-5">
+            <div>
+              <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-400">Mandatory Tech Stack</label>
+              <div class="flex flex-wrap gap-2" [ngClass]="{'p-3 rounded-md border border-yellow-500/50 bg-yellow-50 dark:bg-yellow-900/10': hasRisk('tech')}">
+                <span *ngFor="let tech of selectedProjectDetails.parsedJson.mandatory_tech_stack"
+                      class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300">
+                  {{ tech }}
+                </span>
+              </div>
+            </div>
+
+
+
+            <div>
+              <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-400">Compliance Requirements</label>
+              <div class="flex flex-wrap gap-2" [ngClass]="{'p-3 rounded-md border border-yellow-500/50 bg-yellow-50 dark:bg-yellow-900/10': hasRisk('compliance')}">
+                <span *ngFor="let compliance of selectedProjectDetails.parsedJson.compliance_requirements"
+                      class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300">
+                  {{ compliance }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 border-t border-slate-200 pt-6 dark:border-slate-700">
+            <h3 class="mb-4 flex items-center text-sm font-bold text-slate-900 dark:text-white">
+              <svg class="mr-2 h-4 w-4 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              Auto-Draft Response (AI Semantic Search)
+            </h3>
+
+            <div class="mb-4 flex space-x-3">
+              <input type="text" [(ngModel)]="rfpQuestion" placeholder="e.g., How do you protect customer data?"
+                     class="block w-full rounded-md border-slate-300 bg-white text-slate-900 placeholder-slate-400 shadow-sm focus:border-purple-500 focus:ring-purple-500 dark:border-slate-600 dark:bg-slate-800 dark:text-white sm:text-sm">
+              <button (click)="generateDraft()" [disabled]="isGenerating || !rfpQuestion"
+                      class="inline-flex justify-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50">
+                <span *ngIf="!isGenerating">Search Context</span>
+                <span *ngIf="isGenerating" class="flex items-center">
+                  <svg class="-ml-1 mr-2 h-4 w-4 animate-spin text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                  Searching...
+                </span>
+              </button>
+            </div>
+
+            <div *ngIf="generatedDraft" class="rounded-lg border border-purple-100 bg-purple-50/50 p-4 dark:border-purple-800/30 dark:bg-purple-900/10">
+
+              <div class="mb-4">
+                <span class="font-bold uppercase tracking-wider text-[10px] text-purple-600 dark:text-purple-400">Generated Draft</span>
+                <p class="mt-1 whitespace-pre-wrap text-sm leading-relaxed text-slate-700 dark:text-slate-300">{{ generatedDraft }}</p>
+              </div>
+
+              <div class="mt-3 border-t border-purple-200/50 pt-3 dark:border-purple-800/30">
+                <span class="mb-2 flex items-center font-bold uppercase tracking-wider text-[10px] text-slate-500 dark:text-slate-400">
+                  <svg class="mr-1 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  Knowledge Base Sources Used
+                </span>
+                <ul class="space-y-2">
+                  <li *ngFor="let source of usedSources" class="rounded border border-slate-200 bg-white p-2 text-xs text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+                    "{{ source }}"
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="flex items-center justify-between space-x-3 border-t border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
+        <button (click)="deleteDocument(selectedProjectDetails.id)" class="rounded-md border border-transparent p-2 text-red-500 transition-colors hover:border-red-200 hover:bg-red-50 dark:hover:bg-red-900/20" title="Delete Document">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        </button>
+
+        <div class="flex flex-1 justify-end space-x-3">
+          <button class="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-200">
+            Export JSON
+          </button>
+          <button (click)="viewSourcePdf(selectedProjectDetails.id)" class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700">
+            View Source PDF
+          </button>
+        </div>
+      </div>
+    </div>
+</div>

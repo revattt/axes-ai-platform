@@ -1,0 +1,54 @@
+﻿<div class="mx-auto flex h-full max-w-7xl flex-col p-8">
+
+  <header class="mb-8 border-b border-slate-200 pb-4 dark:border-slate-800">
+    <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">System Telemetry</h2>
+    <p class="mt-1 text-sm text-slate-500">Real-time performance metrics and AI extraction health.</p>
+  </header>
+
+  <div *ngIf="isLoading" class="flex justify-center py-12">
+    <svg class="h-8 w-8 animate-spin text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+  </div>
+
+  <div *ngIf="errorMessage" class="rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-800 dark:bg-red-900/20 dark:text-red-400">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && stats" class="flex flex-1 flex-col">
+
+    <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <h3 class="mb-1 text-sm font-medium text-slate-500 dark:text-slate-400">Total Documents</h3>
+        <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ stats.totalDocuments }}</p>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <h3 class="mb-1 text-sm font-medium text-slate-500 dark:text-slate-400">Avg. AI Confidence</h3>
+        <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">{{ stats.avgConfidence }}%</p>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <h3 class="mb-1 text-sm font-medium text-slate-500 dark:text-slate-400">Processing Time</h3>
+        <p class="text-3xl font-bold text-slate-900 dark:text-white">12.2s</p>
+        <p class="mt-2 flex items-center text-xs text-green-500">Estimated Baseline</p>
+      </div>
+    </div>
+
+    <div class="grid min-h-[400px] flex-1 grid-cols-1 gap-6 lg:grid-cols-3">
+
+      <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800 lg:col-span-2">
+        <h3 class="mb-4 text-sm font-semibold text-slate-900 dark:text-white">AI Extraction Confidence Trend</h3>
+        <div class="relative h-full min-h-[300px] w-full flex-1">
+          <canvas id="confidenceChart"></canvas>
+        </div>
+      </div>
+
+      <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800 lg:col-span-1">
+        <h3 class="mb-4 text-sm font-semibold text-slate-900 dark:text-white">Human-in-the-Loop Triage</h3>
+        <div class="relative flex h-full min-h-[300px] w-full flex-1 items-center justify-center">
+          <canvas id="triageChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+﻿<div class="flex min-h-screen items-center justify-center bg-gray-900">
+  <div class="w-full max-w-md rounded-xl border border-gray-700 bg-gray-800 p-8 shadow-2xl">
+
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold tracking-wider text-white">AXES<span class="text-blue-500">.AI</span></h1>
+      <p class="mt-2 text-sm text-gray-400">Initialize New Operative</p>
+    </div>
+    <div *ngIf="successMessage" class="mb-6 animate-pulse rounded-lg border border-green-500 bg-green-900/50 px-4 py-2 text-center text-sm text-green-200">
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="errorMessage" class="mb-6 rounded-lg border border-red-500 bg-red-900/50 px-4 py-2 text-center text-sm text-red-200">
+      {{ errorMessage }}
+    </div>
+
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-5">
+      <div>
+        <label class="mb-1 block text-sm font-medium text-gray-400">Username</label>
+        <input type="text" name="username" [(ngModel)]="userData.username" required
+               class="w-full rounded-lg border border-gray-600 bg-gray-900 px-4 py-3 text-white outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+      </div>
+
+      <div>
+        <label class="mb-1 block text-sm font-medium text-gray-400">Email</label>
+        <input type="email" name="email" [(ngModel)]="userData.email" required
+               class="w-full rounded-lg border border-gray-600 bg-gray-900 px-4 py-3 text-white outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+      </div>
+
+      <div>
+        <label class="mb-1 block text-sm font-medium text-gray-400">Password</label>
+        <input type="password" name="password" [(ngModel)]="userData.password" required
+               class="w-full rounded-lg border border-gray-600 bg-gray-900 px-4 py-3 text-white outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+      </div>
+
+      <button type="submit" [disabled]="isLoading || registerForm.invalid"
+              class="w-full rounded-lg bg-blue-600 px-4 py-3 font-bold text-white shadow-[0_0_15px_rgba(37,99,235,0.3)] transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-500">
+        {{ isLoading ? 'Initializing...' : 'Create Account' }}
+      </button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <a routerLink="/login" class="text-sm text-gray-400 transition-colors hover:text-blue-400">Already registered? Access portal here.</a>
+    </div>
+
+  </div>
+</div>
