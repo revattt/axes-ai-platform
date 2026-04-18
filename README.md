@@ -91,3 +91,61 @@ This is the client-facing user interface.
 * **API Keys:** The Google Gemini API key is managed via a hidden `.env` file and is explicitly ignored by source control. **Never commit your `.env` file to GitHub.**
 * **CORS Errors:** If the Angular UI fails to fetch data, ensure the Python server is running on exactly `127.0.0.1:8000` and the Angular app is on `localhost:4200`. Cross-Origin Resource Sharing (CORS) is strictly enforced.
 * **Dynamic KB Training:** When you upload a PDF to the Knowledge Base via the UI, the semantic vectors are saved to the system's RAM via FAISS. If you terminate the Python server, you will need to re-upload the document for the AI to retain those specific facts.
+
+---
+
+## 🌐 Production-Ready Configuration (No hardcoded localhost)
+
+### Backend (`backend-api`)
+
+This project is configured to use **Supabase Postgres** by default.
+
+Set these environment variables before running:
+
+```bash
+export SUPABASE_DB_CONNECTION="Host=<host>;Port=5432;Database=postgres;Username=postgres;Password=<password>;SSL Mode=Require;Trust Server Certificate=true"
+export ASPNETCORE_URLS="http://0.0.0.0:5093"
+```
+
+Optional app settings:
+- `AllowedOrigins` in `backend-api/appsettings.json` controls CORS origins.
+- `AiService:BaseUrl` in `backend-api/appsettings.json` controls where the backend calls `/api/extract`.
+
+### Frontend (`frontend`)
+
+Frontend base URLs are environment-driven:
+- `src/environments/environment.ts` (development)
+- `src/environments/environment.prod.ts` (production build)
+
+Update `environment.prod.ts` with your deployed backend/AI URLs before shipping.
+
+---
+
+## 🐳 One-command Docker run (no manual base URL edits)
+
+All services can now run together via Docker with reverse-proxy routing:
+- Frontend served at `http://localhost:4200`
+- Browser calls backend as `/api/...`
+- Browser calls AI service as `/ai/...`
+- No per-machine frontend base URL edits required
+
+### 1) Create env file
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with:
+- `SUPABASE_DB_CONNECTION`
+- `GEMINI_API_KEY`
+- `ALLOWED_ORIGINS` (keep `http://localhost:4200` for local)
+
+### 2) Start everything
+
+```bash
+docker compose up --build
+```
+
+### 3) Open app
+
+Visit `http://localhost:4200`.

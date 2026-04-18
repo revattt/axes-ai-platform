@@ -19,6 +19,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   generatedDraft: string = '';
   usedSources: string[] = [];
   isGenerating: boolean = false;
+  private readonly hiddenInsightKeys = new Set([
+    'risk_assessment',
+    'ai_confidence_score',
+    'mandatory_tech_stack',
+    'budget_mentioned',
+    'submission_deadline',
+    'compliance_requirements'
+  ]);
 
   constructor(private projectService: ProjectService, private cdr: ChangeDetectorRef) { }
 
@@ -61,8 +69,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
  
     if (this.selectedProjectDetails.extractedJson) {
       try {
-
-        this.selectedProjectDetails.parsedJson = JSON.parse(this.selectedProjectDetails.extractedJson);
+        this.selectedProjectDetails.parsedJson =
+          typeof this.selectedProjectDetails.extractedJson === 'string'
+            ? JSON.parse(this.selectedProjectDetails.extractedJson)
+            : this.selectedProjectDetails.extractedJson;
       } catch (e) {
         // Fallback just in case the AI messed up the formatting
         this.selectedProjectDetails.parsedJson = { raw_data: this.selectedProjectDetails.extractedJson };
@@ -131,6 +141,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
 
     return foundRisk ? foundRisk.issue : '';
+  }
+
+  getReadableLabel(rawKey: string): string {
+    return rawKey
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, (letter) => letter.toUpperCase());
+  }
+
+  getDisplayValue(value: unknown): string {
+    if (value === null || value === undefined) return 'Not specified';
+    if (typeof value === 'string') return value.trim() || 'Not specified';
+    if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+    return 'Structured value';
+  }
+
+  getGenericInsights(): Array<{ key: string; value: unknown }> {
+    const parsed = this.selectedProjectDetails?.parsedJson;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return [];
+
+    return Object.entries(parsed)
+      .filter(([key, value]) => !this.hiddenInsightKeys.has(key) && value !== undefined)
+      .map(([key, value]) => ({ key, value }));
+  }
+
+  isInsightList(value: unknown): boolean {
+    return Array.isArray(value);
+  }
+
+  insightListItems(value: unknown): any[] {
+    return Array.isArray(value) ? value : [];
   }
 
   // RAG Generation Function

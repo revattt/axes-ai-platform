@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // Update this to your actual .NET port!
-  private apiUrl = 'https://localhost:7115/api/Auth';
+  private apiUrl = `${environment.apiBaseUrl}/api/Auth`;
 
   constructor(private http: HttpClient) { }
 

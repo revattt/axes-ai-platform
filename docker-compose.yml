@@ -1,0 +1,34 @@
+services:
+  backend-api:
+    build:
+      context: ./backend-api
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5093
+      AiService__BaseUrl: http://ai-microservice:8000
+    ports:
+      - "5093:5093"
+    depends_on:
+      - ai-microservice
+
+  ai-microservice:
+    build:
+      context: ./ai-microservice
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend-api
+      - ai-microservice

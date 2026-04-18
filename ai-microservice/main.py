@@ -29,12 +29,13 @@ app = FastAPI(title="Axes AI Extraction Engine")
 # ==========================================
 # NEW: CORS SECURITY CONFIGURATION
 # ==========================================
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:4200").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"], # The VIP List (Your Angular App)
+    allow_origins=[origin.strip() for origin in allowed_origins if origin.strip()],
     allow_credentials=True,
-    allow_methods=["*"], # Allow POST, GET, PUT, DELETE, etc.
-    allow_headers=["*"], # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Initialize the RAG Vector Database
@@ -129,7 +130,7 @@ async def extract_rfp_data(file: UploadFile = File(...)):
 
         # Ask the AI
         response = client.models.generate_content(
-            model='gemini-2.5-flash', 
+            model='gemini-2.5-flash',
             contents=prompt
         )
         
@@ -261,4 +262,4 @@ async def train_knowledge_base(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Failed to ingest document: {str(e)}")
         
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
