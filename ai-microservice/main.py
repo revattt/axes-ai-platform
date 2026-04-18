@@ -3,6 +3,7 @@ import PyPDF2
 import traceback
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from pydantic import BaseModel # Added to handle incoming text questions
+from dotenv import load_dotenv
 from google import genai
 import os
 import uvicorn
@@ -16,9 +17,11 @@ import numpy as np
 # ==========================================
 # 1. GLOBAL INITIALIZATION
 # ==========================================
-
+load_dotenv()
 # Initialize the Gemini AI Client
-GOOGLE_API_KEY = "AIzaSyAw2JD2rk74iYBJXT3NlCnoS2X4JeaLIso"
+GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GOOGLE_API_KEY:
+    raise ValueError("CRITICAL ERROR: GEMINI_API_KEY is missing from the .env file!")
 client = genai.Client(api_key=GOOGLE_API_KEY)
 
 app = FastAPI(title="Axes AI Extraction Engine")
