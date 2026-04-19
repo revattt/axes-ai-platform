@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'https://localhost:7115/api/Project';
+  private apiUrl = `${environment.apiBaseUrl}/api/Project`;
+  private aiUrl = environment.aiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +43,7 @@ export class ProjectService {
 
     // Send the question payload to the Python/C# backend
     // or leave it as the Python URL if Angular talks to Python directly for this test.
-    return this.http.post('http://127.0.0.1:8000/api/ask', { question: question }, { headers });
+    return this.http.post(`${this.aiUrl}/ask`, { question: question }, { headers });
   }
 
   deleteProject(projectId: number) {
@@ -57,7 +59,7 @@ export class ProjectService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     // Adjust the URL if your controller routing is slightly different!
-    return this.http.get<any>(`https://localhost:7115/api/Project/analytics`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/analytics`, { headers });
   }
 
   getProjectPdf(projectId: number) {
@@ -82,6 +84,6 @@ export class ProjectService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post('http://127.0.0.1:8000/api/train', formData, { headers });
+    return this.http.post(`${this.aiUrl}/train`, formData, { headers });
   }
 }

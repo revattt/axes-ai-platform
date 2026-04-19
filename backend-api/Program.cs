@@ -5,10 +5,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
+var dbProvider = builder.Configuration["DatabaseProvider"] ?? "Postgres";
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    if (dbProvider.Equals("Postgres", StringComparison.OrdinalIgnoreCase))
+    {
+        var connectionString = Environment.GetEnvironmentVariable("SUPABASE_DB_CONNECTION")
+            ?? builder.Configuration.GetConnectionString("SupabaseConnection")
+            ?? throw new InvalidOperationException("SUPABASE_DB_CONNECTION env var is not set.");
+
+        options.UseNpgsql(connectionString)
+               .ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
+    }
+    else
+    {
+        throw new InvalidOperationException($"Unsupported DatabaseProvider: {dbProvider}");
+    }
+});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -39,7 +56,17 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
     {
-        policy.WithOrigins("http://localhost:4200") // Must be exact URL. No trailing slash!
+        var allowedOriginsFromEnv = Environment.GetEnvironmentVariable("ALLOWED_ORIGINS");
+        var allowedOrigins = !string.IsNullOrWhiteSpace(allowedOriginsFromEnv)
+            ? allowedOriginsFromEnv.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+            : builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+
+        if (allowedOrigins.Length == 0)
+        {
+            throw new InvalidOperationException("AllowedOrigins must contain at least one origin.");
+        }
+
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials(); // <-- THIS IS THE MAGIC KEY FOR SIGNALR
@@ -52,6 +79,12 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -59,12 +92,18 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+app.Use(async (ctx, next) =>
+{
+    Console.WriteLine($"[REQ] {ctx.Request.Method} {ctx.Request.Path}");
+    await next();
+    Console.WriteLine($"[RES] {ctx.Response.StatusCode}");
+});
+
+app.MapGet("/api/ping", () => "pong");
+
 app.UseCors("AllowAngular");
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllers();
 app.MapHub<ProjectHub>("/projectHub");
 

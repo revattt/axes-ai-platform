@@ -18,12 +18,14 @@ namespace Axes.Api.Controllers
         private readonly AppDbContext _context;
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IHubContext<ProjectHub> _hubContext;
+        private readonly IConfiguration _configuration;
 
-        public ProjectController(AppDbContext context, IServiceScopeFactory scopeFactory, IHubContext<ProjectHub> hubContext)
+        public ProjectController(AppDbContext context, IServiceScopeFactory scopeFactory, IHubContext<ProjectHub> hubContext, IConfiguration configuration)
         {
             _context = context;
             _scopeFactory = scopeFactory;
             _hubContext = hubContext;
+            _configuration = configuration;
         }
 
         // Helper method to securely get the user ID from their JWT Token
@@ -90,8 +92,9 @@ namespace Axes.Api.Controllers
                     var fileContent = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
                     content.Add(fileContent, "file", file.FileName);
 
-                    // WATCH THE EXACT ROUTE NAME HERE! No trailing slash!
-                    var pythonResponse = await client.PostAsync("http://127.0.0.1:8000/api/extract", content);
+                    var aiBaseUrl = _configuration["AiService:BaseUrl"] ?? "http://127.0.0.1:8000";
+                    var extractUrl = $"{aiBaseUrl.TrimEnd('/')}/api/extract";
+                    var pythonResponse = await client.PostAsync(extractUrl, content);
 
                     var projectToUpdate = await backgroundContext.Projects.FindAsync(projectId);
                     if (projectToUpdate != null)

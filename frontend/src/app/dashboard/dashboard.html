@@ -125,7 +125,7 @@
               <label class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-400">Estimated Budget</label>
               <div [ngClass]="{'border-red-300 bg-red-50 text-red-900 dark:border-red-500/50 dark:bg-red-900/20 dark:text-red-200': hasRisk('budget'), 'border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200': !hasRisk('budget')}"
                    class="w-full rounded-md border p-3 text-sm shadow-sm transition-colors">
-                {{ selectedProjectDetails.parsedJson.budget_mentioned }}
+                {{ getDisplayValue(selectedProjectDetails.parsedJson.budget_mentioned) }}
               </div>
 
               <p *ngIf="hasRisk('budget')" class="mt-2 flex items-center text-xs font-medium text-red-500 dark:text-red-400">
@@ -141,7 +141,7 @@
               <label class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-400">Submission Deadline</label>
               <div [ngClass]="{'border-red-300 bg-red-50 text-red-900 dark:border-red-500/50 dark:bg-red-900/20 dark:text-red-200': hasRisk('deadline'), 'border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200': !hasRisk('deadline')}"
                    class="w-full rounded-md border p-3 text-sm shadow-sm transition-colors">
-                {{ selectedProjectDetails.parsedJson.submission_deadline }}
+                {{ getDisplayValue(selectedProjectDetails.parsedJson.submission_deadline) }}
               </div>
 
               <p *ngIf="hasRisk('deadline')" class="mt-2 flex items-center text-xs font-medium text-red-500 dark:text-red-400">
@@ -158,6 +158,10 @@
                       class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300">
                   {{ tech }}
                 </span>
+                <span *ngIf="!selectedProjectDetails.parsedJson.mandatory_tech_stack?.length"
+                      class="text-xs text-slate-500 dark:text-slate-400">
+                  Not specified
+                </span>
               </div>
             </div>
 
@@ -170,6 +174,30 @@
                       class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300">
                   {{ compliance }}
                 </span>
+                <span *ngIf="!selectedProjectDetails.parsedJson.compliance_requirements?.length"
+                      class="text-xs text-slate-500 dark:text-slate-400">
+                  Not specified
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="getGenericInsights().length" class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-900/50">
+            <h4 class="mb-3 border-b border-slate-200 pb-2 text-xs font-bold uppercase tracking-wider text-slate-500 dark:border-slate-700 dark:text-slate-400">Additional Extracted Insights</h4>
+            <div class="space-y-3">
+              <div *ngFor="let insight of getGenericInsights()">
+                <label class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-400">{{ getReadableLabel(insight.key) }}</label>
+                <div class="w-full rounded-md border border-slate-200 bg-white p-3 text-sm text-slate-900 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                  <ng-container *ngIf="!isInsightList(insight.value); else listInsight">
+                    <span class="whitespace-pre-wrap break-words">{{ getDisplayValue(insight.value) }}</span>
+                  </ng-container>
+                  <ng-template #listInsight>
+                    <ul class="list-disc pl-5">
+                      <li *ngFor="let item of insightListItems(insight.value)" class="whitespace-pre-wrap break-words">{{ getDisplayValue(item) }}</li>
+                      <li *ngIf="insightListItems(insight.value).length === 0" class="list-none pl-0 text-slate-500 dark:text-slate-400">Not specified</li>
+                    </ul>
+                  </ng-template>
+                </div>
               </div>
             </div>
           </div>
